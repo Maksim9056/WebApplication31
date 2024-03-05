@@ -38,10 +38,10 @@ namespace WebApplication31
       
             // Add services to the container.
             builder.Services.AddRazorPages();
-           // builder.Services.AddDbContext<WorkForData>(options =>
-           //options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-           // builder.Services.AddDbContext<WorkForData>(options =>
-           //options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
+            // builder.Services.AddDbContext<WorkForData>(options =>
+            //options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<WorkForData>(options =>
+           options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
             var app = builder.Build();
             Operations.Operations work = new Operations.Operations();
             work.Start();
@@ -163,8 +163,6 @@ namespace WebApplication31
             app.MapRazorPages();
             app.UseRouting();
             app.MapControllers(); // Добавление маршрутов для контроллеров API
-
-
             app.Run();
         }
         public class AuthOptions
