@@ -20,5 +20,20 @@ namespace Web
         {
             InitializeComponent();
         }
+
+        private void TextBlock_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBlock_IsEnabledChanged_1(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

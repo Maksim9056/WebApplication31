@@ -72,10 +72,10 @@ namespace WebApplication31
 
                         if(!string.IsNullOrEmpty(mail1) && !string.IsNullOrEmpty(password))
                         {
-                            User user = new User(0, "", 0, mail1, password);
+                            //User user = new User(0, "", 0, mail1, password);
 
-                            User data = work.SelectUser(user);
-                            context.Response.Redirect($"/login/{data.Name}");
+                            ////User data = work.SelectUser(user);
+                            //context.Response.Redirect($"/login/{data.Name}");
                         }
                          
 
@@ -116,8 +116,8 @@ namespace WebApplication31
                          string age = context.Request.Form["age"];
                          string mail = context.Request.Form["mailreg"];
                          string password = context.Request.Form["passwordreg"];
-                         User user = new User(0, name, Convert.ToInt32(age), mail, password);
-                         work.adduser(user);
+                         //User user = new User(0, name, Convert.ToInt32(age), mail, password);
+                         //work.adduser(user);
                          context.Response.Redirect("/", false);
                      }
 
@@ -137,6 +137,37 @@ namespace WebApplication31
                  });
             });
             /// Reg
+            app.MapWhen(context => context.Request.Path.StartsWithSegments("/admin"), appBuilder =>
+            {
+              appBuilder.Run(async (context) =>
+            {
+
+                string add = "";
+                if (context.Request.Method == "POST" && context.Request.Form.ContainsKey("ВойтиUser"))
+                {
+
+                    context.Response.Redirect($"/admin/managmentuser/", false);
+
+                }
+
+                if (context.Request.Method == "GET" || context.Request.Method == "POST")
+                {
+                    var indexHtmlContent = System.IO.File.ReadAllText("wwwroot/html/Admin.html");
+                    add = indexHtmlContent;
+                    context.Response.ContentType = "text/html; charset=utf-8"; // Установка правильной кодировки
+                    await context.Response.WriteAsync(add);
+                }
+            });
+            });
+
+            app.MapWhen(context  => context.Request.Path.StartsWithSegments( $"/admin/managmentuser/"), appBuilder =>
+            {
+                appBuilder.Run(async (context) =>
+                { 
+            
+            
+                });
+            });
 
             app.Map("/login/{username}", (string username) =>
             {
