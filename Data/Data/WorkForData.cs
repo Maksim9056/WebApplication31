@@ -13,6 +13,10 @@ namespace Data.Data
 
         public DbSet<User> Users { get; set; } = null!;
 
+
+        public DbSet<Rolles> Rolles { get; set; } = null!;
+        public DbSet<UserEndpoint> UserEndpoint { get; set; } = null!;
+
         public WorkForData()
         {
             try

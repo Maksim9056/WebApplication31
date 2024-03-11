@@ -8,14 +8,15 @@
         public string Mail { get; set; }
         public string Password { get; set; }
         
-        public User(int id,string name ,int age,string mail,string password) 
+        public Rolles Rolles { get; set; }
+        public User(int id,string name ,int age,string mail,string password, Rolles rolles) 
         {
             Id = id;
             Name = name;
             Age = age;
             Mail = mail;
-            Password = password;
-        
+            Password = password; 
+            Rolles = rolles;
         }
 
     }
